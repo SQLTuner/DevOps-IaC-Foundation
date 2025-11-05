@@ -9,8 +9,10 @@ include:
 variables:
   email_dev_team:
     description: List of emails of the development team
+    default: []
   email_stakeholders:
     description: List of emails of the stakeholders
+    default: []
 
 targets:
   dev:
