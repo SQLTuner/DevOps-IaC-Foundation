@@ -1,0 +1,55 @@
+bundle:
+  name: iac-foundation-by-leandro
+
+include:
+  - resources/*.yml # Includes job definitions defined in resources/
+
+# 1. Variable declaration in order to set its scope as global
+# --- Global Variable Definition ---
+variables:
+  email_dev_team:
+    description: List of emails of the development team
+  email_stakeholders:
+    description: List of emails of the stakeholders
+
+targets:
+  dev:
+    default: true
+    workspace:
+      host: https://adb-dev.databricks.net
+
+    # 2. Adjust email list to each target/environmnet
+    variables:
+      # Defining the list for the 'dev' team (specific to dev environment)
+      email_dev_team:
+        - email1@domain.domain
+        - email2@domain.domain
+      email_stakeholders: ${var.email_dev_team} #This is important to set eventhogh you don't have a stakeholders list. In this case it copies from the email_dev_team to prevent processing error during deploy activity.
+
+  qas:    
+    workspace:
+      host: https://adb-dev.databricks.net
+
+    # 2. Adjust email list to each target/environmnet
+    variables:
+      # Defining the list for the 'qas' team (specific to qas environment)
+      email_dev_team:
+        - email3@domain.domain
+        - email4@domain.domain
+      email_stakeholders:
+        - email2@domain.domain
+        - email3@domain.domain
+
+      
+  prod:
+    workspace:
+      host: https://adb-prod.databricks.net
+
+    # 2. Adjust email list to each target/environmnet
+    variables:
+      email_dev_team:
+        - email3@domain.domain
+        - email4@domain.domain
+      email_stakeholders:
+        - email5@domain.domain
+        - email6@domain.domain
