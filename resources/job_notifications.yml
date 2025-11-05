@@ -1,0 +1,10 @@
+resources:
+  jobs:
+    #<Job name>:
+      name: #<Job Name>
+      
+      email_notifications:
+        #Each variable is list, and this is how you assing it to the "event"
+        on_failure: ${var.email_dev_team}
+        on_success: ${var.email_stakeholders}
+        on_start: ${var.email_dev_team}
