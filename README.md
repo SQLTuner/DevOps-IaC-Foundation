@@ -20,8 +20,10 @@ The fix is based on correctly defining the variable as a **YAML List Array** in 
 variables:
   email_dev_team:
     description: List of emails of the development team
+    default: []
   email_stakeholders:     
     description: List of emails of the development team
+    default: []
 
 # 2. Adjust email list to each target/environmnet
 targets:
